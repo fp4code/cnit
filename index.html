@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ressources CNED</title>
+<style>
+body{font-family:system-ui,sans-serif;max-width:480px;margin:12vh auto;padding:0 20px;color:#202124}h1{font-size:1.6rem}label{display:block;margin-bottom:8px}form{display:flex;gap:8px}input{font:inherit;font-size:1.2rem;min-width:0;flex:1;padding:12px;border:1px solid #888;border-radius:7px;text-transform:uppercase}button{font:inherit;padding:12px 17px;border:0;border-radius:7px;background:#1557b0;color:white;cursor:pointer}p{color:#555;line-height:1.5}.error{color:#b00020}
+</style>
+</head>
+<body>
+<h1>Ressources complémentaires CNED</h1>
+<form id="f">
+<label for="code" style="position:absolute;left:-9999px">Code de la ressource</label>
+<input id="code" placeholder="xxxx" autocomplete="off" autocapitalize="characters" autofocus required pattern="[A-Za-z0-9]+" aria-describedby="help">
+<button type="submit">Ouvrir</button>
+</form>
+<p id="help">Saisis seulement le code indiqué après <strong>4IT52_QR_</strong>, sans « .html ».</p>
+<p id="msg" class="error" role="alert"></p>
+<script>
+const prefix='https://ressources-streaming2.cned.fr/ressources_streaming/Rouen/QRCodes/4IT52TEPA0126/4IT52_QR_';
+const input=document.getElementById('code');
+const go=(value)=>{const code=value.trim().replace(/\.html$/i,'').toUpperCase();if(!/^[A-Z0-9]+$/.test(code)){document.getElementById('msg').textContent='Code invalide.';return;}location.href=prefix+code+'.html';};
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();go(input.value);});
+const param=new URLSearchParams(location.search).get('code');if(param)go(param);
+</script>
+</body>
+</html>
